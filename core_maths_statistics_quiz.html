@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core Maths Statistics Quiz</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f7fb;margin:0;padding:20px;color:#172033}
+.container{max-width:760px;margin:auto;background:white;padding:24px;border-radius:16px;box-shadow:0 4px 18px #0002}
+h1{text-align:center;color:#1457a6}
+.question{margin:22px 0;padding:18px;background:#f8fafc;border-radius:12px}
+label{display:block;margin:10px 0;padding:10px;background:white;border:1px solid #ddd;border-radius:8px}
+button{width:100%;padding:14px;background:#1457a6;color:white;border:0;border-radius:10px;font-size:17px}
+#result{text-align:center;font-size:22px;font-weight:bold;margin:20px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Core Maths: Statistics Quiz</h1>
+<p>Choose the best answer for each question.</p>
+<form id="quiz"></form>
+<button onclick="submitQuiz()">Submit Quiz</button>
+<div id="result"></div>
+</div>
+
+<script>
+const questions=[
+["What is the mean of 4, 6, 8, 10 and 12?","6","8","10","12","B"],
+["Find the median of 3, 7, 9, 12 and 15.","7","8","9","12","C"],
+["What is the mode of 2, 4, 4, 5, 6, 4 and 7?","2","4","5","6","B"],
+["Find the range of 8, 13, 5, 17 and 10.","10","12","14","17","C"],
+["The mean of 5 numbers is 12. What is their total?","17","50","60","72","C"],
+["Find the median of 4, 8, 2, 10, 6 and 12.","6","7","8","9","B"],
+["A class has scores 2, 3, 4, 4, 5, 6 and 7. What is the mode?","3","4","5","6","B"],
+["If the smallest value is 11 and the range is 18, what is the largest value?","7","18","29","33","C"],
+["What is the mean of 10, 15, 20 and 25?","15","17.5","20","22.5","B"],
+["Which measure of central tendency is most suitable for the most frequently occurring shoe size?","Mean","Median","Mode","Range","C"],
+["A frequency table has values 1, 2 and 3 with frequencies 2, 5 and 3 respectively. What is the total frequency?","8","9","10","11","C"],
+["Using the same table, what is the mean?","2.0","2.1","2.2","2.3","B"],
+["What is the probability of selecting an even number from 1 to 10?","1/5","2/5","1/2","3/5","C"],
+["A data set has mean 20. If every value is increased by 5, what is the new mean?","20","25","100","105","B"],
+["The scores are 5, 7, 8, 10 and 15. What is the lower quartile (Q1)?","5","6","7","8","B"],
+["For the ordered data 2, 4, 6, 8, 10, 12, 14, what is the median?","6","8","10","12","B"],
+["A student scored 12, 15, 18 and 20. What score is needed in the fifth test to obtain a mean of 17?","18","19","20","21","C"],
+["If the mean of 6 observations is 14, and one observation of 9 is removed, what is the mean of the remaining 5 observations?","14","15","15.5","16","B"],
+["Which graph is generally best for showing the distribution of continuous grouped data?","Pie chart","Histogram","Pictogram","Bar chart","B"],
+["What is the interquartile range if Q1=12 and Q3=27?","12","15","27","39","B"]
+];
+
+const quiz=document.getElementById("quiz");
+questions.forEach((q,i)=>{
+  let div=document.createElement("div");
+  div.className="question";
+  div.innerHTML=`<b>${i+1}. ${q[0]}</b>`;
+  ["A","B","C","D"].forEach((letter,j)=>{
+    div.innerHTML+=`<label><input type="radio" name="q${i}" value="${letter}"> ${letter}. ${q[j+1]}</label>`;
+  });
+  quiz.appendChild(div);
+});
+
+function submitQuiz(){
+ let score=0;
+ questions.forEach((q,i)=>{
+   let selected=document.querySelector(`input[name="q${i}"]:checked`);
+   if(selected && selected.value===q[5]) score++;
+ });
+ document.getElementById("result").textContent=`Your score: ${score}/20`;
+ window.scrollTo(0,document.body.scrollHeight);
+}
+</script>
+</body>
+</html>
